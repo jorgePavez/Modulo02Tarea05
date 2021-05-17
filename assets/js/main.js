@@ -1,6 +1,6 @@
 //carga de datos
 let centroMedico = [
-    radiologia = [{
+    [{
             hora: "11:00",
             especialista: "IGNACIO SCHULZ",
             paciente: "FRANCISCA ROJAS",
@@ -36,7 +36,7 @@ let centroMedico = [
             prevision: "FONASA"
         }
     ],
-    traumatologia = [{
+    [{
             hora: "8:00",
             especialista: "MARIA PAZ ALTUZARRA",
             paciente: "PAULA SANCHEZ",
@@ -86,7 +86,7 @@ let centroMedico = [
             prevision: "ISAPRE"
         }
     ],
-    dental = [{
+    [{
             hora: "8:30",
             especialista: "ANDREA ZUÑIGA",
             paciente: "MARCELA RETAMAL",
@@ -136,22 +136,37 @@ const mostrarPrimerUltimo = () => {
     for (let i = 0; i < 3; i++) {
         for (let x = 0; x < centroMedico[i].length; x++) {
             if (x == 0) {
-                document.write(`Primer paciente: ${centroMedico[i][x].paciente} - ${centroMedico[i][x].prevision}  | `);
+                document.write(`<p>Primer paciente: ${centroMedico[i][x].paciente} - ${centroMedico[i][x].prevision}  | `);
             };
             if (x == centroMedico[i].length - 1) {
-                document.write(`Último paciente: ${centroMedico[i][x].paciente} - ${centroMedico[i][x].prevision}<br>`);
+                document.write(`Último paciente: ${centroMedico[i][x].paciente} - ${centroMedico[i][x].prevision} </p>`);
             };
         };
     };
+
 };
 mostrarPrimerUltimo();
 
 //recorrer los datos para mostrarlos en la tabla
 const mostrarTabla = () => {
-    document.write(`<table class="table table-borderless table-dark"><thead><tr><th scope="col">ESPECIALIDAD</th><th scope="col">ID</th><th scope="col">HORA</th><th scope="col">ESPECIALISTA</th><th scope="col">PACIENTE</th><th scope="col">RUT</th><th scope="col">PREVISION</th></tr></thead><tbody>`)
     for (let i = 0; i < 3; i++) {
+        document.write(`<table class="table table-borderless table-striped table-dark"><thead><tr><th scope="col">ESPECIALIDAD</th><th scope="col">ID</th><th scope="col">HORA</th><th scope="col">ESPECIALISTA</th><th scope="col">PACIENTE</th><th scope="col">RUT</th><th scope="col">PREVISION</th></tr></thead><tbody>`)
+
+
         for (let x = 0; x < centroMedico[i].length; x++) {
-            document.write(`<th scope="row">${i+1}</th>`);
+
+            if (i == 0) {
+                let nombreEspecialidad = "RADIOLOGÍA";
+                document.write(`<th scope="row">${nombreEspecialidad}</th>`);
+            }
+            if (i == 1) {
+                let nombreEspecialidad = "TRAUMATOLOGIA";
+                document.write(`<th scope="row">${nombreEspecialidad}</th>`);
+            }
+            if (i == 2) {
+                let nombreEspecialidad = "DENTAL";
+                document.write(`<th scope="row">${nombreEspecialidad}</th>`);
+            }
             document.write(`<td>${x+1}</td>`);
             document.write(`<td>${centroMedico[i][x].hora}</td>`);
             document.write(`<td>${centroMedico[i][x].especialista}</td>`);
@@ -159,8 +174,9 @@ const mostrarTabla = () => {
             document.write(`<td>${centroMedico[i][x].rut}</td>`);
             document.write(`<td>${centroMedico[i][x].prevision}</td></tr>`);
         };
+        document.write(`</tr></tbody></table>`)
     };
-    document.write(`</tr></tbody></table>`)
+
 };
 mostrarTabla();
 
